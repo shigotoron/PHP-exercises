@@ -13,12 +13,12 @@ function partitions($remain, $maxSummand) {
         $count++;
         echo $count . ": " . implode(" + ", $summands) . "\n";
     } else {
-        $summand = min($maxSummand, $remain);
-        while ($summand > 0) {
-            array_push($summands, $summand);
-            partitions($remain - $summand, $summand);
+        $nextSummand = min($maxSummand, $remain);
+        while ($nextSummand > 0) {
+            array_push($summands, $nextSummand);
+            partitions($remain - $nextSummand, $nextSummand);
             array_pop($summands);
-            $summand--;
+            $nextSummand--;
         }
     }
 }
