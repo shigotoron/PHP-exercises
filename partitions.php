@@ -1,17 +1,25 @@
 <?php
 
+/**
+ * 標準入力から得た整数の分割すべてを列挙する PHP のプログラムです。
+ */
+
+echo "0 以上の整数をひとつ入力してください：";
+
 $n = (int) trim(fgets(STDIN));
-echo "以下に {$n} の分割を列挙します。\n";
+
 $count = 0;
 $summands = [];
+$partitions = [];
 
 function partitions($remain, $currentSummand) {
     global $count;
     global $summands;
+    global $partitions;
 
     if ($remain == 0) {
         $count++;
-        echo $count . ": " . implode(" + ", $summands) . "\n";
+        $partitions[$count] = $summands;
     } else {
         $nextSummand = min($currentSummand, $remain);
         while ($nextSummand > 0) {
@@ -24,3 +32,9 @@ function partitions($remain, $currentSummand) {
 }
 
 partitions($n, $n);
+
+echo "{$n} の分割は全部で " . count($partitions) . " 個あります。以下にそれらを列挙します。\n";
+
+foreach ($partitions as $key => $partition) {
+    echo $key . ": " . implode(" + ", $partition) . "\n";
+}
