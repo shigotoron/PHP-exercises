@@ -12,7 +12,7 @@ $count = 0;
 $summands = [];
 $partitions = [];
 
-function partitions($remain, $currentSummand) {
+function partitions(int $remain, int $currentSummand) {
     global $count;
     global $summands;
     global $partitions;
